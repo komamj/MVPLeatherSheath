@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/black"
+    android:gravity="center" >
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+        
+        <TextView 
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="none"
+            android:singleLine="true"
+            android:textSize="80sp"
+            android:textColor="@color/leather_normal_text_color"/>
+        
+        <TextView 
+            android:id="@+id/ampm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="none"
+            android:singleLine="true"
+            android:paddingTop="20dip"
+            android:text="@string/page_leather_ampm"
+            android:textColor="@color/leather_normal_text_color"/>
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+        
+        <TextView 
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="none"
+            android:singleLine="true"
+            android:paddingRight="5dip"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="@dimen/leather_normal_text_size"
+            android:textColor="@color/leather_normal_text_color"/>
+        
+        <TextView 
+            android:id="@+id/week"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="none"
+            android:singleLine="true"
+            android:paddingRight="5dip"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="@dimen/leather_normal_text_size"
+            android:textColor="@color/leather_normal_text_color"/>
+        
+        <TextView 
+            android:id="@+id/weather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:paddingRight="5dip"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="@dimen/leather_normal_text_size"
+            android:textColor="@color/leather_normal_text_color"/>
+        
+        <TextView 
+            android:id="@+id/temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:paddingRight="5dip"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="@dimen/leather_normal_text_size"
+            android:textColor="@color/leather_normal_text_color"/>
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingTop="25dip"
+        android:orientation="horizontal">
+        
+        <FrameLayout
+            android:id="@+id/missed_call_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/call"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/call"/>
+            
+            <ImageView
+                android:id="@+id/missed_call"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|right"/>
+        </FrameLayout>
+        
+        <LinearLayout
+            android:id="@+id/unread_message_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="30dip"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/message"
+                android:paddingRight="-2dip"/>
+
+            <ImageView
+                android:id="@+id/unread_message"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_marginTop="-7dip"/>
+          </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
