@@ -10,13 +10,17 @@ import com.koma.leathersheath.util.LogUtils;
  */
 public class BaseApplication extends Application {
     private static final String TAG = BaseApplication.class.getName();
-    private static  Context sContext;
-    @Override public void onCreate(){
+    private static Context sContext;
+
+    @Override
+    public void onCreate() {
         super.onCreate();
-        LogUtils.i(TAG,"onCreate");
+        LogUtils.i(TAG, "onCreate");
+        sContext = getApplicationContext();
     }
-    public static Context getContext(){
-        synchronized(BaseApplication.class){
+
+    public static Context getContext() {
+        synchronized (BaseApplication.class) {
             return sContext;
         }
     }

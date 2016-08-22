@@ -3,6 +3,8 @@ package com.koma.leathersheath.main.view.activity;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,16 +17,33 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 
 import com.koma.leathersheath.R;
+import com.koma.leathersheath.main.adapter.LeatherPagerAdapter;
+import com.koma.leathersheath.main.presenter.MainPresenter;
+import com.koma.leathersheath.main.view.fragment.MainFragment;
+import com.koma.leathersheath.main.view.fragment.MusicFragment;
+import com.koma.leathersheath.main.view.fragment.NoticeFragment;
+import com.koma.leathersheath.util.LogUtils;
+import com.koma.view.viewpagerindicator.LinePageIndicator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by koma on 2016/8/19.
  */
 public class LeatherSheathActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private static final String TAG = LeatherSheathActivity.class.getName();
+    private List<Fragment> mListFragment = new ArrayList<Fragment>();
+    private ViewPager mViewPager;
+    private LeatherPagerAdapter mLeatherPagerAdapter;
+    private LinePageIndicator mIndicator;
+    private MainPresenter mMainPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        LogUtils.i(TAG, "onCreate");
         setContentView(R.layout.activity_leather_sheath);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -49,7 +68,8 @@ public class LeatherSheathActivity extends AppCompatActivity
         init();
 
     }
-    private void init(){
+
+    private void init() {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD |
                 WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
         getWindow().getDecorView().setSystemUiVisibility(
@@ -57,6 +77,17 @@ public class LeatherSheathActivity extends AppCompatActivity
                         View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
                         View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
                         View.SYSTEM_UI_FLAG_FULLSCREEN);
+        mViewPager = (ViewPager) findViewById(R.id.pager);
+        mIndicator = (LinePageIndicator) findViewById(R.id.indicator);
+        MainFragment mainFragment = new MainFragment();
+        mMainPresenter = new MainPresenter(mainFragment);
+        mListFragment.add(mainFragment);
+        MusicFragment noticeFragment = new MusicFragment();
+        mListFragment.add(noticeFragment);
+        mLeatherPagerAdapter = new LeatherPagerAdapter(getSupportFragmentManager(), mListFragment);
+        mViewPager.setAdapter(mLeatherPagerAdapter);
+        mIndicator.setViewPager(mViewPager);
+        mIndicator.setCurrentItem(0);
     }
 
     @Override
